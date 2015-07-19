@@ -12,6 +12,8 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
                 mkdir -p /var/lib/transmission-daemon/downloads && \
     [[ -d /var/lib/transmission-daemon/incomplete ]] || \
                 mkdir -p /var/lib/transmission-daemon/incomplete && \
+    [[ -d /var/lib/transmission-daemon/watch ]] || \
+                mkdir -p /var/lib/transmission-daemon/watch && \
     [[ -d /var/lib/transmission-daemon/info/blocklists ]] || \
                 mkdir -p /var/lib/transmission-daemon/info/blocklists && \
     chown -Rh debian-transmission. /var/lib/transmission-daemon && \

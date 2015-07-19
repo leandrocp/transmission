@@ -65,6 +65,7 @@ shift $(( OPTIND - 1 ))
 
 [[ -d $dir/downloads ]] || mkdir -p $dir/downloads
 [[ -d $dir/incomplete ]] || mkdir -p $dir/incomplete
+[[ -d $dir/watch ]] || mkdir -p $dir/watch
 [[ -d $dir/info/blocklists ]] || mkdir -p $dir/info/blocklists
 chown -Rh debian-transmission. $dir
 
@@ -88,7 +89,8 @@ else
     exec su -l debian-transmission -s /bin/bash -c "exec transmission-daemon \
                 --config-dir $dir/info --blocklist --encryption-preferred \
                 --log-error -e /dev/stdout --global-seedratio 2.0 --dht \
-                --incomplete-dir $dir/incomplete --paused --auth --foreground \
+                --incomplete-dir $dir/incomplete -c $dir/watch \
+                --paused --auth --foreground \
                 --username '${TRUSER:-admin}' --password '${TRPASSWD:-admin}' \
                 --download-dir $dir/downloads --no-portmap --allowed \\* 2>&1"
 fi
